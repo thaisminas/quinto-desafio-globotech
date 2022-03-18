@@ -1,0 +1,27 @@
+
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql:8
+    container_name: quinto-desafio
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: tminas
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: quinto-desafio
+    ports:
+      - '3306:3306'
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  mysql_data:
